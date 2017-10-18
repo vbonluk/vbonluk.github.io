@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<!--
+====================================================
+    __  ____  ______________  _______ ___    __ 
+   / / / /  |/  / ____/   \ \/ / ___//   |  / / 
+  / /_/ / /|_/ / /_  / /| |\  /\__ \/ /| | / /  
+ / __  / /  / / __/ / ___ |/ /___/ / ___ |/ /___
+/_/ /_/_/  /_/_/   /_/  |_/_//____/_/  |_/_____/
+                                                     
+====================================================
+Owner Name: Hossain Mohammad Faysal
+Profile: https://www.facebook.com/hmfaysal
+Version: 1.1
+Description: Awesome dude, awesome life
+====================================================
+-->
+
+<html xmlns:wb="http://open.weibo.com/wb">
+
+<head>
+{% include head.html %}
+
+</head>
+<body class="home-template" itemscope itemtype="http://schema.org/WebPage">
+<div id="fade"></div>
+<a id="slide" class="animated fade"></a>
+<aside id="sidebar">
+    <nav id="navigation">
+    <h2>菜单</h2>
+    <hr>
+{% for link in site.links %}
+            <li>{% if link.external %}
+                    <a href="{{ link.url }}">{{ link.title }}</a>
+                {% else %}
+                    <a href="{{ site.url }}{{ link.url }}">{{ link.title }}</a>
+                {% endif %} </li>
+{% endfor %}            
+           <li><a href="{{ site.url }}/feed.xml" title="Atom/RSS feed"><i class="icon-rss"></i> 订阅</a></li>
+
+           <a target="_blank" title="订阅到鲜果 RSS阅读器" href="http://xianguo.com/subscribe?url=http://xn--rgvu79ah1g.com/feed.xml"><img src="http://static.xgres.com/static/images/sub/sub_XianGuo_02.gif" border="0" alt="鲜果阅读器订阅图标" /></a>
+
+           <br/>
+
+           <a target="_blank" href="http://reader.youdao.com/b.do?keyfrom=bookmarklet&url=http://xn--rgvu79ah1g.com/feed.xml"><img src="http://reader.youdao.com/images/feed-btn-4.gif" border="0" alt="订阅到有道阅读" /></a>
+
+
+           <!-- <a target=”_blank” title=”订阅到谷歌 RSS阅读器” href=”http://fusion.google.com/add?source=atgs&feedurl=http://xn--rgvu79ah1g.com/feed.xml”><img src=http://www.timsion.com/uploadfile/2016/0301/20160301053530803.gif” border=”0″ alt=”Add to Google”></a> -->
+
+           <br/>
+           <br/>
+           <br/>
+           <wb:share-button appkey="4287238921" addition="simple" type="button" default_text="分享到 微博" ralateUid="2955138553"></wb:share-button>
+            <br/>
+
+            <style type="text/css"> 
+                .align-center222{ 
+                margin:0 auto; /* 居中 这个是必须的，，其它的属性非必须 */ 
+                width:200px; /* 给个宽度 顶到浏览器的两边就看不出居中效果了   居中调整这里，数值是图片的宽度 */
+                background:red; /* 背景色 */ 
+                text-align:center; /* 文字等内容居中 */ 
+                } 
+                </style> 
+            <!-- JiaThis Button BEGIN -->
+            <div id="ckepop" class="align-center222" >
+                <span class="jiathis_txt">分享到：</span>
+                <a class="jiathis_button_weixin">微信</a> 
+                <a href="{{ page.url }}"  class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+                <a class="jiathis_counter_style"></a> </div> 
+                <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1" charset="utf-8"></script>
+            </div> 
+            <!-- JiaThis Button END -->
+
+    </nav>
+    
+
+<!-- 提交数据到百度搜索 -->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+<!-- 百度自动推送 -->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https'){
+   bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+  }
+  else{
+  bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+  }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+</aside>
+{% if page.imagefeature %}<header id="masthead" class="blog-background overlay align-center align-middle animated from-bottom"  style="background-image: url({{ site.url }}/images/{{ page.imagefeature }})" itemscope itemtype="http://schema.org/Organization">
+{% else %}
+<header id="masthead" class="blog-background overlay align-center align-middle animated from-bottom"  style="background-image: url({{ site.url }}/images/{{ site.default_bg }})" itemscope itemtype="http://schema.org/Organization">
+{% endif %}
+{% if site.search %}
+    <button class="menu-button animated fade dosearch">
+        <i class="icon-search"></i>
+    </button>
+{% endif %}
+{% if site.description %}
+    <div class="inner">
+        <div class="container">
+            <a class="brand light" href="{{ site.url }}" role="banner" itemprop="url">
+
+                {% if site.logo %}<img itemprop="logo" src="{{ site.url }}/images/{{ site.logo }}" alt="{{ site.title }} Logo" />{% endif %}
+
+            <h1 class="blog-title light" itemprop="name">
+                {{ site.title }}
+            </h1>
+                
+            </a>
+            <h2 class="blog-description light bordered bordered-top" itemprop="description">
+                {{ site.description }}
+            </h2>
+
+                <h4> <a title="把这个链接拖到你的Chrome收藏夹工具栏中" href='javascript:(function() {
+                function c() {
+                    var e = document.createElement("link");
+                    e.setAttribute("type", "text/css");
+                    e.setAttribute("rel", "stylesheet");
+                    e.setAttribute("href", f);
+                    e.setAttribute("class", l);
+                    document.body.appendChild(e)
+                }
+             
+                function h() {
+                    var e = document.getElementsByClassName(l);
+                    for (var t = 0; t < e.length; t++) {
+                        document.body.removeChild(e[t])
+                    }
+                }
+             
+                function p() {
+                    var e = document.createElement("div");
+                    e.setAttribute("class", a);
+                    document.body.appendChild(e);
+                    setTimeout(function() {
+                        document.body.removeChild(e)
+                    }, 100)
+                }
+             
+                function d(e) {
+                    return {
+                        height : e.offsetHeight,
+                        width : e.offsetWidth
+                    }
+                }
+             
+                function v(i) {
+                    var s = d(i);
+                    return s.height > e && s.height < n && s.width > t && s.width < r
+                }
+             
+                function m(e) {
+                    var t = e;
+                    var n = 0;
+                    while (!!t) {
+                        n += t.offsetTop;
+                        t = t.offsetParent
+                    }
+                    return n
+                }
+             
+                function g() {
+                    var e = document.documentElement;
+                    if (!!window.innerWidth) {
+                        return window.innerHeight
+                    } else if (e && !isNaN(e.clientHeight)) {
+                        return e.clientHeight
+                    }
+                    return 0
+                }
+             
+                function y() {
+                    if (window.pageYOffset) {
+                        return window.pageYOffset
+                    }
+                    return Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+                }
+             
+                function E(e) {
+                    var t = m(e);
+                    return t >= w && t <= b + w
+                }
+             
+                function S() {
+                    var e = document.createElement("audio");
+                    e.setAttribute("class", l);
+                    e.src = i;
+                    e.loop = false;
+                    e.addEventListener("canplay", function() {
+                        setTimeout(function() {
+                            x(k)
+                        }, 500);
+                        setTimeout(function() {
+                            N();
+                            p();
+                            for (var e = 0; e < O.length; e++) {
+                                T(O[e])
+                            }
+                        }, 15500)
+                    }, true);
+                    e.addEventListener("ended", function() {
+                        N();
+                        h()
+                    }, true);
+                    e.innerHTML = " <p>If you are reading this, it is because your browser does not support the audio element. We recommend that you get a new browser.</p> <p>";
+                    document.body.appendChild(e);
+                    e.play()
+                }
+             
+                function x(e) {
+                    e.className += " " + s + " " + o
+                }
+             
+                function T(e) {
+                    e.className += " " + s + " " + u[Math.floor(Math.random() * u.length)]
+                }
+             
+                function N() {
+                    var e = document.getElementsByClassName(s);
+                    var t = new RegExp("\\b" + s + "\\b");
+                    for (var n = 0; n < e.length; ) {
+                        e[n].className = e[n].className.replace(t, "")
+                    }
+                }
+             
+                var e = 30;
+                var t = 30;
+                var n = 350;
+                var r = 350;
+                var i = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake.mp3";
+                var s = "mw-harlem_shake_me";
+                var o = "im_first";
+                var u = ["im_drunk", "im_baked", "im_trippin", "im_blown"];
+                var a = "mw-strobe_light";
+                var f = "//s3.amazonaws.com/moovweb-marketing/playground/harlem-shake-style.css";
+                var l = "mw_added_css";
+                var b = g();
+                var w = y();
+                var C = document.getElementsByTagName("*");
+                var k = null;
+                for (var L = 0; L < C.length; L++) {
+                    var A = C[L];
+                    if (v(A)) {
+                        if (E(A)) {
+                            k = A;
+                            break
+                        }
+                    }
+                }
+                if (A === null) {
+                    console.warn("Could not find a node of the right size. Please try a different page.");
+                    return
+                }
+                c();
+                S();
+                var O = [];
+                for (var L = 0; L < C.length; L++) {
+                    var A = C[L];
+                    if (v(A)) {
+                        O.push(A)
+                    }
+                }
+                    })()    '>High一下</a> 
+                </h4>
+        </div>
+    </div>
+    {% else %}
+    <div class="inner">
+        <div class="container">
+            <a class="brand" href="{{ site.url }}" role="banner" itemprop="url">
+                
+                    <img itemprop="logo" src="{{ site.url }}/images/{{ site.logo }}" alt="{{ site.title }} Logo" />
+
+            <h1 class="blog-title light" itemprop="name">
+                {{ site.title }}
+            </h1>
+                
+            </a>
+        </div>
+    </div>
+    {% endif %}
+    {% if site.animated_fins and site.triangleheader %}
+    <div class="decor-wrapper">
+        <svg id="header-decor" class="decor bottom" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path class="large left" d="M0 0 L50 50 L0 100" fill="rgba(255,255,255, .1)"></path>
+            <path class="large right" d="M100 0 L50 50 L100 100" fill="rgba(255,255,255, .1)"></path>
+
+            <path class="medium left" d="M0 100 L50 50 L0 33.3" fill="rgba(255,255,255, .3)"></path>
+            <path class="medium right" d="M100 100 L50 50 L100 33.3" fill="rgba(255,255,255, .3)"></path>
+
+            <path class="small left" d="M0 100 L50 50 L0 66.6" fill="rgba(255,255,255, .5)"></path>
+            <path class="small right" d="M100 100 L50 50 L100 66.6" fill="rgba(255,255,255, .5)"></path>
+
+            <path d="M0 99.9 L50 49.9 L100 99.9 L0 99.9" fill="rgba(255,255,255, 1)"></path>
+
+            <path d="M48 52 L50 49 L52 52 L48 52" fill="rgba(255,255,255, 1)"></path>
+
+        </svg>
+    </div>
+    {% else %}
+    {% if site.triangleheader %}
+    <div class="decor-wrapper">
+        <svg id="header-decor" class="decor bottom" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path d="M0 99.9 L50 49.9 L100 99.9 L0 99.9" fill="rgba(255,255,255, 1)"></path>
+
+            <path d="M48 52 L50 49 L52 52 L48 52" fill="rgba(255,255,255, 1)"></path>
+
+        </svg>
+    </div>
+    {% endif %}
+    {% endif %}
+</header>
+
+
+
+<div id="main" class="content" role="main" itemprop="mainContentOfPage">
+    <div class="container">
+        <div class="row">
+            <div class="page-body" itemprop="description">
+            {{ content }}
+            </div>    
+        </div>
+    </div>
+</div>
+    {% include footer.html %}
+
+{% include scripts.html %}  
+</body>
+</html>

@@ -1,0 +1,153 @@
+  # adapted from https://github.com/imathis/octopress/blob/master/Rakefile   
+  # usage rake new_post['My New Post'] or rake new_post (defaults to "My New Post")
+  desc "Start a new post"
+  task :new, :title do |t, args|
+   args.with_defaults(:title => 'My New Post')
+   title = args.title
+   # filename = "_posts/#{Time.now.strftime('%Y-%m-%d')}-#{title.gsub(/&/,'and').gsub(/[,'":\?!\(\)\[\]]/,'').gsub(/[\W\.]/, '-').gsub(/-+$/,'')}.md"
+   filename = "_posts/#{Time.now.strftime('%Y-%m-%d')}-#{title}.md"
+   puts "Creating new post: #{filename}"
+   open(filename, 'w') do |post|
+     post.puts "---"
+     post.puts ""
+     post.puts "layout: post"
+     post.puts "title: \"#{title.gsub(/&/,'&amp;')}\""
+     post.puts "description: "
+     post.puts "headline: "
+     post.puts "modified: #{Time.now.strftime('%Y-%m-%d')}"
+     post.puts "category: iOS之路"
+     post.puts "tags: []"
+     # post.puts "image: "
+     # post.puts "  feature: "
+     post.puts "imagefeature: "
+     post.puts "comments: true"
+     post.puts "mathjax: "
+     post.puts ""
+     post.puts "---"
+     post.puts ""
+     post.puts ""
+     post.puts ""
+     post.puts ""
+     post.puts ""
+     post.puts ""
+     post.puts "原创作品，欢迎转载，转载请声明出处：<http://www.真无聊.com>"
+     post.puts " "
+     post.puts "友情链接联系:5914018@qq.com"
+     post.puts " "
+     post.puts "交流QQ群：271568188"
+   end
+  end
+
+  desc "Start a new quote"
+  task :newquote, :title do |t, args|
+   args.with_defaults(:title => 'My New quote')
+   title = args.title
+   # filename = "_posts/#{Time.now.strftime('%Y-%m-%d')}-#{title.downcase.gsub(/&/,'and').gsub(/[,'":\?!\(\)\[\]]/,'').gsub(/[\W\.]/, '-').gsub(/-+$/,'')}.md"
+   filename = "_posts/#{Time.now.strftime('%Y-%m-%d')}-#{title}.md"
+   puts "Creating new post: #{filename}"
+   open(filename, 'w') do |post|
+     post.puts "---"
+     post.puts "layout: post"
+     post.puts "type: quote"
+     post.puts "title: \"#{title.gsub(/&/,'&amp;')}\""
+     post.puts "description: "
+     post.puts "headline: "
+     post.puts "modified: #{Time.now.strftime('%Y-%m-%d')}"
+     post.puts "category: quotes"
+     post.puts "tags: []"
+     post.puts "image: "
+     post.puts "  feature: "
+     post.puts "comments: false"
+     post.puts "mathjax: "
+     post.puts "---"
+   end
+  end
+
+  desc "Start a new status"
+  task :newstatus, :title do |t, args|
+   args.with_defaults(:title => 'My New Post')
+   title = args.title
+   # filename = "_posts/#{Time.now.strftime('%Y-%m-%d')}-#{title.downcase.gsub(/&/,'and').gsub(/[,'":\?!\(\)\[\]]/,'').gsub(/[\W\.]/, '-').gsub(/-+$/,'')}.md"
+   filename = "_posts/#{Time.now.strftime('%Y-%m-%d')}-#{title}.md"
+   puts "Creating new post: #{filename}"
+   open(filename, 'w') do |post|
+     post.puts "---"
+     post.puts "layout: post"
+     post.puts "type: status"
+     post.puts "title: \"#{title.gsub(/&/,'&amp;')}\""
+     post.puts "description: "
+     post.puts "headline: "
+     post.puts "modified: #{Time.now.strftime('%Y-%m-%d')}"
+     post.puts "category: status"
+     post.puts "tags: []"
+     post.puts "image: "
+     post.puts "  feature: "
+     post.puts "comments: false"
+     post.puts "mathjax: "
+     post.puts "---"
+   end
+  end
+
+    # adapted from https://github.com/imathis/octopress/blob/master/Rakefile   
+  # usage rake new_post['My New Post'] or rake new_post (defaults to "My New Post")
+  desc "Start a new page"
+  task :newpage, :title do |t, args|
+   args.with_defaults(:title => 'My New page')
+   title = args.title
+   # filename = "#{title.downcase.gsub(/&/,'and').gsub(/[,'":\?!\(\)\[\]]/,'').gsub(/[\W\.]/, '-').gsub(/-+$/,'')}.md"
+   filename = "_posts/#{Time.now.strftime('%Y-%m-%d')}-#{title}.md"
+   puts "Creating new page: #{filename}"
+   open(filename, 'w') do |post|
+     post.puts "---"
+     post.puts "layout: page"
+     post.puts "permalink: #{title.downcase.gsub(/&/,'and').gsub(/[,'":\?!\(\)\[\]]/,'').gsub(/[\W\.]/, '-').gsub(/-+$/,'')}/index.html"
+     post.puts "title: \"#{title.gsub(/&/,'&amp;')}\""
+     post.puts "description: "
+     post.puts "headline: "
+     post.puts "modified: #{Time.now.strftime('%Y-%m-%d')}"
+     post.puts "tags: []"
+     post.puts "image: "
+     post.puts "  feature: "
+     post.puts "comments: true"
+     post.puts "mathjax: "
+     post.puts "---"
+   end
+  end
+
+require 'yaml'
+# Load the configuration file
+CONFIG = YAML.load_file("_config.yml")
+
+  # rake deploy["Commit message"]
+desc "Deploy the site to a remote git repo"
+task :deploy, :message do |t, args|
+  message = args[:message]
+  branch = CONFIG["branch"]
+  if message.nil? or message.empty?
+    raise "Please add a commit message."
+  end
+  if branch.nil? or branch.empty?
+    raise "Please add a branch."
+  else
+    Rake::Task[:build].invoke
+    execute("git add .")
+    execute("git commit -m \"#{message}\"")
+    puts "提交到 Github..."
+    # execute("git push origin #{branch}")
+    execute("git push gh gh-pages")
+    puts "提交到 codingNet..."
+    execute("git push codingNet gh-pages")
+    puts "提交完成！"
+  end
+end
+
+# rake build
+desc "Build the site"
+task :build do
+  execute("jekyll build")
+end
+
+# Execute a system command
+def execute(command)
+  system "#{command}"
+end

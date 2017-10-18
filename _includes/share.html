@@ -1,0 +1,49 @@
+<div class="post-share text-center">
+    <p class="light small">
+        分享此文章
+    </p>
+    <ul class="social-mini">
+        <li>
+            <a href="https://twitter.com/intent/tweet?text=&quot;{{ page.title }}&quot;%20{{ site.url }}{{ page.url }}%20via%20&#64;{{ site.owner.twitter }}"
+            onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" data-toggle="tooltip" title="分享到 Twitter" itemprop="Twitter">
+                <i class="icon-twitter"></i>
+            </a>
+        </li>
+        <li>
+            <a  href="https://www.facebook.com/sharer/sharer.php?u={{ site.url }}{{ page.url }}"
+            onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" data-toggle="tooltip" title="分享到 Facebook" itemprop="Facebook">
+                <i class="icon-facebook"></i>
+            </a>
+        </li>
+        <li>
+            <a href="https://plus.google.com/share?url={{ site.url }}{{ page.url }}"
+           onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;" data-toggle="tooltip" title="分享到 Google plus" itemprop="GooglePlus">
+                <i class="icon-google-plus"></i>
+            </a>
+        </li>
+
+        <br/>
+        <br/>
+        <wb:share-button appkey="4287238921" addition="simple" type="button" default_text="分享到 微博" ralateUid="2955138553"></wb:share-button>
+        <br/>
+
+        <style type="text/css"> 
+            .align-center222{ 
+            margin:0 auto; /* 居中 这个是必须的，，其它的属性非必须 */ 
+            width:200px; /* 给个宽度 顶到浏览器的两边就看不出居中效果了   居中调整这里，数值是图片的宽度 */
+            background:red; /* 背景色 */ 
+            text-align:center; /* 文字等内容居中 */ 
+            } 
+            </style> 
+        <!-- JiaThis Button BEGIN -->
+        <div id="ckepop" class="align-center222" >
+            <span class="jiathis_txt">分享到：</span>
+            <a class="jiathis_button_weixin">微信</a> 
+            <a href="{{ page.url }}"  class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+            <a class="jiathis_counter_style"></a> </div> 
+            <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1" charset="utf-8"></script>
+        </div> 
+        <!-- JiaThis Button END -->
+
+    </ul>
+</div>
